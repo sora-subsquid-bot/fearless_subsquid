@@ -1,4 +1,3 @@
-export * from "./account.model"
 export * from "./collator.model"
 export * from "./delegator.model"
 export * from "./staker.model"

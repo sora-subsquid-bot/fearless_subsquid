@@ -18,8 +18,8 @@ export class RoundCollator {
     @ManyToOne_(() => Round, {nullable: true})
     round!: Round
 
-    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
-    ownBond!: bigint | undefined | null
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
+    ownBond!: bigint
 
     @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
     totalBond!: bigint
@@ -39,11 +39,8 @@ export class RoundCollator {
     @OneToMany_(() => RoundNomination, e => e.collator)
     nominators!: RoundNomination[]
 
-    @Column_("int4", {nullable: false})
-    nominatorsCount!: number
-
-    @Column_("text", {nullable: false})
-    stakerId!: string
+    @Column_("int4", {nullable: true})
+    nominatorsCount!: number | undefined | null
 
     @Index_()
     @ManyToOne_(() => Staker, {nullable: true})

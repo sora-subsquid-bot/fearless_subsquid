@@ -26,9 +26,6 @@ export class RoundNominator {
     @Column_("int4", {nullable: false})
     collatorsCount!: number
 
-    @Column_("text", {nullable: false})
-    stakerId!: string
-
     @Index_()
     @ManyToOne_(() => Staker, {nullable: true})
     staker!: Staker

@@ -1,6 +1,5 @@
-import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, OneToOne as OneToOne_, Index as Index_, JoinColumn as JoinColumn_, OneToMany as OneToMany_} from "typeorm"
+import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, Index as Index_, OneToMany as OneToMany_} from "typeorm"
 import * as marshal from "./marshal"
-import {Account} from "./account.model"
 import {RoundCollator} from "./roundCollator.model"
 import {RoundNominator} from "./roundNominator.model"
 import {Reward} from "./reward.model"
@@ -14,19 +13,12 @@ export class Staker {
     @PrimaryColumn_()
     id!: string
 
-    @Column_("text", {nullable: false})
-    stashId!: string
-
-    @Index_({unique: true})
-    @OneToOne_(() => Account, {nullable: false})
-    @JoinColumn_()
-    stash!: Account
+    @Index_()
+    @Column_("text", {nullable: true})
+    stashId!: string | undefined | null
 
     @Column_("text", {nullable: true})
     role!: string | undefined | null
-
-    @Column_("numeric", {transformer: marshal.floatTransformer, nullable: true})
-    commission!: number | undefined | null
 
     @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
     activeBond!: bigint

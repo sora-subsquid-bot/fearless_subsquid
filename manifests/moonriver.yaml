@@ -1,14 +1,16 @@
 manifestVersion: subsquid.io/v0.1
-name: fearless-moonbeam-2
-version: 1
+name: fearless-moonriver
+version: 2
 description: |-
   Parachain staking tracking
 build:
 deploy:
+  secrets:
+    - MOONRIVER_CHAIN_NODE
   addons:
     postgres:
   processor:
-    cmd: ["node", "lib/chains/moonbeam/processor"]
+    cmd: ["node", "lib/chains/moonriver/processor"]
   api:
     cmd:
       [
@@ -24,6 +26,8 @@ deploy:
         "1000",
       ]
 scale:
+  processor:
+    profile: medium
   addons:
     postgres:
       storage: 100Gi
